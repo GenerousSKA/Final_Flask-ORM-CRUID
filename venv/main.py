@@ -11,18 +11,18 @@ db = SQLAlchemy(app)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(200), nullable=False)
-    email = db.Column(db.String(200), unique=True, nullable=False)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), unique=True, nullable=False)
     borrowed_books = db.relationship('Borrow', backref='user', lazy=True)
 
 class Author(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(200), nullable=False)
+    name = db.Column(db.String(100), nullable=False)
     books = db.relationship('Book', backref='author', lazy=True)
 
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(200), nullable=False)
+    title = db.Column(db.String(100), nullable=False)
     author_id = db.Column(db.Integer, db.ForeignKey('author.id'), nullable=False)
     borrows = db.relationship('Borrow', backref='book', lazy=True)
 
